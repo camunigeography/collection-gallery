@@ -1,0 +1,10 @@
+#collectiongallery div.image {float: right; width: 200px; margin: 0 0 10px 20px; min-height: 60px; border: 1px solid #ddd; padding: 10px; text-align: center;}
+#collectiongallery div.image img {border: 0;}
+#collectiongallery p.imagecopyright {padding-top: 2em; font-style: italic; color: gray;}
+#collectiongallery div.image p.imagecopyright a {color: #36f;}
+#collectiongallery div.image p {text-align: center; font-style: italic; margin-top: 5px;}
+#collectiongallery div.imagelarge {margin-top: 2em; margin: 2em auto 0;}
+#collectiongallery p.nullimage {font-style: italic; padding: 0; color: gray;}
+#collectiongallery div.imagelarge img {border: 1px solid #ddd;}
+#collectiongallery div.linebreak {clear: both;}
+#collectiongallery h3.listing {padding: 2em 0 2px 0;}

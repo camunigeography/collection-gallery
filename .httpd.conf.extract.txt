@@ -1,0 +1,27 @@
+# Application Apache directives
+
+# Load using:
+#	# Collection gallery
+#	Include /path/to/collection-gallery/.httpd.conf.extract.txt
+#	Use MacroCollectionGallery /path/to/collection-gallery "Collection gallery"
+
+
+<Macro MacroCollectionGallery $baseUrl $applicationName>
+	
+	# Front controller application support
+	Use MacroFrontControllerApplication "$baseUrl/" "$applicationName"
+	
+	# Application routing
+	RewriteEngine on
+	RewriteRule ^$baseUrl/(copyright).html$ $baseUrl/index.html?action=$1 [L]
+	RewriteRule ^$baseUrl/(articles|search)/$ $baseUrl/index.html?action=$1 [L]
+	RedirectMatch Permanent ^$baseUrl/(articles|search)$ $baseUrl/$1/
+	RewriteRule ^$baseUrl/(search)/(.+) $baseUrl/index.html?action=$1&item=$2 [L]
+	RewriteRule ^$baseUrl/articles/([a-zA-Z0-9]+)/$ $baseUrl/index.html?action=article&item=$1 [L]
+	RedirectMatch Permanent ^$baseUrl/articles/([a-zA-Z0-9]+)$ $baseUrl/articles/$1/
+	RewriteRule ^$baseUrl/articles/([0-9]+)/edit.html$ $baseUrl/index.html?action=article&item=$1&action=edit [L]
+	
+	# Data editing
+	Use MacroSinenomineEmbeddedWholeDb "$baseUrl" "/data" "editing"
+	
+</Macro>

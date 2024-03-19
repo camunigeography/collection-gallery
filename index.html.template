@@ -1,0 +1,15 @@
+<?php
+
+# Settings
+$settings = array (
+	'applicationName' => 'Widgets Museum',
+	'username' => 'my_username',
+	'password' => 'my_password',
+	'copyrightOwner' => 'Example Org',
+);
+
+# Load and run the application with the above settings
+require_once ('vendor/autoload.php');
+new collectionGallery ($settings);
+
+?>
