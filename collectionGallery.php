@@ -22,6 +22,7 @@ class collectionGallery extends frontControllerApplication
 			'page404'				=> false,
 			'copyrightOwner'		=> false,
 			'introductionHtml'		=> false,
+			'listingThumbnailSize'	=> 600,
 		);
 		
 		# Return the defaults
@@ -213,9 +214,8 @@ class collectionGallery extends frontControllerApplication
 	private function createImageHtmlWrapper ($data, $size = 600)
 	{
 		# Create the image with the required settings
-		$this->listingThumbnailSize = 600;
 		$copyrightNotice = "\n" . '<p class="imagecopyright">Note: This image below is <a href="' . $this->baseUrl . '/copyright.html">copyright</a> of ' . htmlspecialchars ($this->settings['copyrightOwner']) . ' and may not be reproduced without permission.</p>' . "\n";
-		$imageHtml = $this->createImageHtml ($data['photograph'], $this->listingThumbnailSize, 'imagelarge', htmlspecialchars ($data['name']), $copyrightNotice);
+		$imageHtml = $this->createImageHtml ($data['photograph'], $this->settings['listingThumbnailSize'], 'imagelarge', htmlspecialchars ($data['name']), $copyrightNotice);
 		
 		# Return the HTML
 		return $imageHtml;
@@ -279,7 +279,7 @@ class collectionGallery extends frontControllerApplication
 		$outputFormat = 'jpg';
 		
 		# Determine the thumbnail location
-		$thumbnailLocation = $this->baseUrl . '/images/' . ($size == $this->listingThumbnailSize ? 'thumbnails/' : '') . str_replace ('.tif', ".{$outputFormat}", $location);
+		$thumbnailLocation = $this->baseUrl . '/images/' . ($size == $this->settings['listingThumbnailSize'] ? 'thumbnails/' : '') . str_replace ('.tif', ".{$outputFormat}", $location);
 		
 		# Get the location of the thumbnail
 		$originalFile = $this->imageStoreRoot . $location;
